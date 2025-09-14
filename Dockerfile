@@ -17,12 +17,13 @@ RUN wget -O /tmp/main.zip https://github.com/x1nx3r/katana-main/archive/refs/hea
     cp -r /tmp/katana-main-main/public_html/wp-content/* /var/www/html/wp-content/ && \
     rm -rf /tmp/main.zip /tmp/katana-main-main
 
-# Copy any custom root files
+# Copy any custom root files and wp-config
 COPY public_html/.htaccess /var/www/html/.htaccess
 COPY public_html/access.php /var/www/html/access.php
 COPY public_html/default.php /var/www/html/default.php
 COPY public_html/nax.php /var/www/html/nax.php
 COPY public_html/radio.php /var/www/html/radio.php
+COPY docker-wp-config.php /var/www/html/wp-config.php
 
 # Set proper permissions for wp-content and all files
 RUN chown -R www-data:www-data /var/www/html && \
