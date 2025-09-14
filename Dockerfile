@@ -7,11 +7,11 @@ RUN docker-php-ext-install mysqli pdo pdo_mysql
 RUN a2enmod rewrite
 
 # Copy custom WordPress content more explicitly
-# First, remove any existing wp-content to start fresh
-RUN rm -rf /var/www/html/wp-content
-
-# Copy the entire wp-content directory
-COPY public_html/wp-content /var/www/html/wp-content
+# Create a fresh wp-content directory and copy our content
+RUN mkdir -p /var/www/html/wp-content-custom
+COPY public_html/wp-content/ /var/www/html/wp-content-custom/
+RUN rm -rf /var/www/html/wp-content && \
+    mv /var/www/html/wp-content-custom /var/www/html/wp-content
 
 # Copy any custom root files that don't conflict with WordPress core
 COPY public_html/.htaccess /var/www/html/.htaccess
