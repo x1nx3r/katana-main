@@ -1,0 +1,63 @@
+# .coolify-bypass.yml
+# Use this to deploy directly to the underlying Docker without Coolify's "help"
+
+version: '3.8'
+services:
+  traefik:
+    image: traefik:v2.10
+    command:
+      - "--providers.docker=true"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+      - "--certificatesresolvers.letsencrypt.acme.httpchallenge=true"
+      - "--certificatesresolvers.letsencrypt.acme.httpchallenge.entrypoint=web"
+      - "--certificatesresolvers.letsencrypt.acme.email=your@email.com"
+      - "--certificatesresolvers.letsencrypt.acme.storage=/letsencrypt/acme.json"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./letsencrypt:/letsencrypt
+    networks:
+      - web
+
+  wordpress:
+    build: .
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.ptkatana.rule=Host(`ptkatana.com`)"
+      - "traefik.http.routers.ptkatana.entrypoints=websecure"
+      - "traefik.http.routers.ptkatana.tls.certresolver=letsencrypt"
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: ptka_tana
+      WORDPRESS_DB_PASSWORD: ptka_tana
+      WORDPRESS_DB_NAME: ptka_tana
+    volumes:
+      - wp_data:/var/www/html
+    networks:
+      - web
+      - internal
+
+  db:
+    image: mariadb:10.11
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass123
+      MYSQL_DATABASE: ptka_tana
+      MYSQL_USER: ptka_tana
+      MYSQL_PASSWORD: ptka_tana
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - internal
+
+volumes:
+  wp_data:
+  db_data:
+
+networks:
+  web:
+    external: true
+  internal:
+    internal: true

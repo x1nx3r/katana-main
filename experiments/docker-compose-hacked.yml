@@ -1,0 +1,50 @@
+# More elegant Coolify workaround
+services:
+  # Init container to prep data
+  wp-init:
+    image: alpine:latest
+    volumes:
+      - wp_data:/data
+    command: |
+      sh -c "
+        if [ ! -f /data/.initialized ]; then
+          apk add --no-cache git
+          git clone https://github.com/x1nx3r/katana-main.git /tmp/repo
+          cp -r /tmp/repo/public_html/wp-content/* /data/
+          touch /data/.initialized
+        fi
+      "
+    
+  wordpress:
+    image: wordpress:latest
+    depends_on:
+      - wp-init
+      - db
+    volumes:
+      - wp_data:/var/www/html/wp-content
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: ${DB_USER:-ptka_tana}
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD:-ptka_tana}
+      WORDPRESS_DB_NAME: ${DB_NAME:-ptka_tana}
+    networks:
+      - ptkatana-network
+
+  db:
+    image: mariadb:10.11
+    environment:
+      MYSQL_DATABASE: ${DB_NAME:-ptka_tana}
+      MYSQL_USER: ${DB_USER:-ptka_tana}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-ptka_tana}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-rootpass123}
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - ptkatana-network
+
+volumes:
+  wp_data:
+  db_data:
+
+networks:
+  ptkatana-network:
