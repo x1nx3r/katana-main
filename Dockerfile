@@ -29,5 +29,10 @@ COPY docker-wp-config.php /var/www/html/wp-config.php
 RUN chown -R www-data:www-data /var/www/html && \
     chmod -R 755 /var/www/html
 
+# Increase PHP memory and timeouts for better performance
+RUN echo "memory_limit = 256M" >> /usr/local/etc/php/conf.d/docker-php-memlimit.ini && \
+    echo "max_execution_time = 120" >> /usr/local/etc/php/conf.d/docker-php-timeout.ini && \
+    echo "max_input_time = 60" >> /usr/local/etc/php/conf.d/docker-php-timeout.ini
+
 # Expose port 80
 EXPOSE 80
