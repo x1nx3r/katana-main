@@ -10,7 +10,6 @@ services:
       WORDPRESS_TABLE_PREFIX: wphc_
     volumes:
       - wordpress_data:/var/www/html
-      - ./public_html/wp-content:/var/www/html/wp-content
     depends_on:
       - db
     networks:
