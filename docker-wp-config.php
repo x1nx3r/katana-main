@@ -75,8 +75,17 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
     // WP-CLI specific settings
 } elseif ( isset($_SERVER['HTTP_HOST']) ) {
     $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
-    define( 'WP_HOME', $protocol . '://' . $_SERVER['HTTP_HOST'] );
-    define( 'WP_SITEURL', $protocol . '://' . $_SERVER['HTTP_HOST'] );
+    $host = $_SERVER['HTTP_HOST'];
+    
+    // Handle production domain
+    if ( $host === 'ptkatana.com' || $host === 'www.ptkatana.com' ) {
+        define( 'WP_HOME', 'https://ptkatana.com' );
+        define( 'WP_SITEURL', 'https://ptkatana.com' );
+    } else {
+        // Local development or other domains
+        define( 'WP_HOME', $protocol . '://' . $host );
+        define( 'WP_SITEURL', $protocol . '://' . $host );
+    }
 }
 
 /* Add any custom values between this line and the "stop editing" line. */

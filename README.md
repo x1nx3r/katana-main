@@ -68,8 +68,9 @@
    ```
 
 3. **Domain Configuration:**
-   - Add your domain in Coolify's Domains tab
+   - Add your domain: `ptkatana.com` in Coolify's Domains tab
    - Enable SSL/TLS (Let's Encrypt)
+   - The application is configured to automatically handle ptkatana.com
    - Coolify automatically handles reverse proxy (no port configuration needed)
 
 ### Step 3: Deploy
