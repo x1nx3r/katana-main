@@ -1,0 +1,155 @@
+.soft_promo_button {
+background-color: #4CAF50; /* Green */
+border: none;
+color: white;
+padding: 6px 10px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 13px;
+margin: 4px 2px;
+-webkit-transition-duration: 0.4s; /* Safari */
+transition-duration: 0.4s;
+cursor: pointer;
+}
+
+.soft_promo_button:focus{
+border: none;
+color: white;
+}
+
+.soft_promo_button1 {
+color: white;
+background-color: #4CAF50;
+border:3px solid #4CAF50;
+}
+
+.soft_promo_button1:hover {
+box-shadow: 0 6px 8px 0 rgba(0,0,0,0.24), 0 9px 25px 0 rgba(0,0,0,0.19);
+color: white;
+border:3px solid #4CAF50;
+}
+
+.soft_promo_button2 {
+color: white;
+background-color: #0085ba;
+}
+
+.soft_promo_button2:hover {
+box-shadow: 0 6px 8px 0 rgba(0,0,0,0.24), 0 9px 25px 0 rgba(0,0,0,0.19);
+color: white;
+}
+
+.soft_promo_button3 {
+color: white;
+background-color: #365899;
+}
+
+.soft_promo_button3:hover {
+box-shadow: 0 6px 8px 0 rgba(0,0,0,0.24), 0 9px 25px 0 rgba(0,0,0,0.19);
+color: white;
+}
+
+.soft_promo_button4 {
+color: white;
+background-color: rgb(66, 184, 221);
+}
+
+.soft_promo_button4:hover {
+box-shadow: 0 6px 8px 0 rgba(0,0,0,0.24), 0 9px 25px 0 rgba(0,0,0,0.19);
+color: white;
+}
+
+.soft_promo-close{
+float:right;
+text-decoration:none;
+margin: 5px 10px 0px 0px;
+}
+
+.soft_promo-close:hover{
+color: red;
+}
+
+.soft_notice{
+background-color: #fff;
+align-items: left;
+display: flex;
+text-align: left;
+border-radius: 6px;
+box-shadow: 0px 10px 12px -7px #777;
+border-left-color: unset !important;
+border-left: unset !important;
+}
+.soft_siteurl{
+font-size: 14px;
+}
+.soft_sitehead{
+font-size: 14px;
+font-weight: 600;
+width: 100%;
+border-bottom: 1px solid #c3c4c7;
+padding-bottom: 8px;
+}
+
+.soft_button {
+background-color: #4CAF50; /* Green */
+border: none;
+color: white;
+border-radius: 4px;
+padding: 8px 16px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+margin: 4px 2px;
+-webkit-transition-duration: 0.4s; /* Safari */
+transition-duration: 0.4s;
+cursor: pointer;
+}
+
+.soft_button:focus, .soft_button:hover{
+border: none;
+color: white;
+}
+
+.soft_button1 {
+color: white;
+background-color: #4CAF50;
+border:3px solid #4CAF50;
+}
+
+.soft_button1:hover {
+box-shadow: 0 6px 8px 0 rgba(0,0,0,0.24), 0 9px 12px 0 rgba(0,0,0,0.19);
+color: white;
+border:3px solid #4CAF50;
+}
+
+.soft_button2 {
+color: white;
+background-color: #0085ba;
+}
+
+.soft_button2:hover {
+box-shadow: 0 6px 8px 0 rgba(0,0,0,0.24), 0 9px 25px 0 rgba(0,0,0,0.19);
+color: white;
+}
+
+.soft_button3 {
+color: white;
+background-color: #365899;
+}
+
+.soft_button3:hover {
+box-shadow: 0 6px 8px 0 rgba(0,0,0,0.24), 0 9px 25px 0 rgba(0,0,0,0.19);
+color: white;
+}
+
+.soft_button4 {
+color: white;
+background-color: rgb(66, 184, 221);
+}
+
+.soft_button4:hover {
+box-shadow: 0 6px 8px 0 rgba(0,0,0,0.24), 0 9px 25px 0 rgba(0,0,0,0.19);
+color: white;
+}

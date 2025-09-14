@@ -1,0 +1,41 @@
+services:
+  wordpress:
+    build: .
+    restart: unless-stopped
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: ${DB_USER:-ptka_tana}
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD:-ptka_tana}
+      WORDPRESS_DB_NAME: ${DB_NAME:-ptka_tana}
+      WORDPRESS_TABLE_PREFIX: wphc_
+    volumes:
+      - wordpress_data:/var/www/html
+      - ./public_html/wp-content:/var/www/html/wp-content
+    depends_on:
+      - db
+    networks:
+      - ptkatana-network
+
+  db:
+    image: mariadb:10.11
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${DB_NAME:-ptka_tana}
+      MYSQL_USER: ${DB_USER:-ptka_tana}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-ptka_tana}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-rootpass123}
+      MYSQL_CHARSET: utf8mb4
+      MYSQL_COLLATION: utf8mb4_unicode_520_ci
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./ptka_tana.sql:/docker-entrypoint-initdb.d/ptka_tana.sql:ro
+    networks:
+      - ptkatana-network
+
+volumes:
+  wordpress_data:
+  db_data:
+
+networks:
+  ptkatana-network:
+    driver: bridge
