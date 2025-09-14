@@ -1,0 +1,13 @@
+FROM mariadb:10.11
+
+# Copy the SQL file to the initialization directory
+# MariaDB will automatically execute .sql files in this directory on first startup
+COPY ptka_tana.sql /docker-entrypoint-initdb.d/
+
+# Set proper permissions for the SQL file
+RUN chmod 644 /docker-entrypoint-initdb.d/ptka_tana.sql
+
+# The base MariaDB image will handle the rest:
+# - Create database and user from environment variables
+# - Execute SQL files in /docker-entrypoint-initdb.d/
+# - Start MariaDB service

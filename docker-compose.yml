@@ -17,7 +17,9 @@ services:
       - ptkatana-network
 
   db:
-    image: mariadb:10.11
+    build:
+      context: .
+      dockerfile: Dockerfile.db
     restart: unless-stopped
     environment:
       MYSQL_DATABASE: ${DB_NAME:-ptka_tana}
@@ -28,7 +30,6 @@ services:
       MYSQL_COLLATION: utf8mb4_unicode_520_ci
     volumes:
       - db_data:/var/lib/mysql
-      - ./:/docker-entrypoint-initdb.d/:ro
     networks:
       - ptkatana-network
 
