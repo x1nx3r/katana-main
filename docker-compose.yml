@@ -28,7 +28,7 @@ services:
       MYSQL_COLLATION: utf8mb4_unicode_520_ci
     volumes:
       - db_data:/var/lib/mysql
-      - ./ptka_tana.sql:/docker-entrypoint-initdb.d/ptka_tana.sql:ro
+      - ./:/docker-entrypoint-initdb.d/:ro
     networks:
       - ptkatana-network
 
