@@ -1,0 +1,50 @@
+# WordPress specific files that shouldn't be in Git
+
+# Temporary files
+temp-write-test-*
+.tmb/
+.quarantine/
+
+# WordPress cache and temporary files
+wp-content/cache/
+wp-content/backup*/
+wp-content/upgrade/
+wp-content/uploads/cache/
+
+# LiteSpeed Cache
+.litespeed_flag
+wp-content/litespeed/
+
+# Error logs
+error_log
+*.log
+
+# WordPress configuration (contains sensitive data)
+wp-config.php
+
+# Backup files
+*.bk
+.htaccess.bk
+
+# Well-known directory (Let's Encrypt, etc.)
+.well-known/
+
+# Advanced Cache files
+wp-content/advanced-cache.php
+wp-content/wp-cache-config.php
+
+# Plugin generated files
+wp-content/plugins/*/cache/
+wp-content/plugins/*/logs/
+
+# Theme compiled assets (if any)
+wp-content/themes/*/node_modules/
+wp-content/themes/*/dist/
+wp-content/themes/*/.sass-cache/
+
+# Uploads (optional - comment out if you want to track uploads)
+# wp-content/uploads/
+
+# Database dumps
+*.sql.gz
+*.sql.bz2

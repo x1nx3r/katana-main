@@ -3,6 +3,7 @@
 docker-compose.override.yml
 
 # WordPress specific
+public_html/wp-config.php
 wp-config.php.bak
 wp-content/cache/
 wp-content/backup-db/
@@ -12,6 +13,12 @@ wp-content/upgrade/
 # Logs
 *.log
 error_log
+
+# WordPress temp files
+public_html/temp-write-test-*
+public_html/.tmb/
+public_html/.quarantine/
+public_html/.well-known/
 
 # OS generated files
 .DS_Store
