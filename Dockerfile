@@ -13,8 +13,7 @@ COPY public_html/default.php /var/www/html/default.php
 COPY public_html/nax.php /var/www/html/nax.php
 COPY public_html/radio.php /var/www/html/radio.php
 
-# Copy custom wp-config.php for Docker environment
-COPY docker-wp-config.php /var/www/html/wp-config.php
+# Let WordPress handle its own wp-config.php using environment variables
 
 # Set proper permissions
 RUN chown -R www-data:www-data /var/www/html && \
