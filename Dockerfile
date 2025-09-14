@@ -6,9 +6,12 @@ RUN docker-php-ext-install mysqli pdo pdo_mysql
 # Enable Apache mod_rewrite for WordPress permalinks
 RUN a2enmod rewrite
 
-# Start with fresh WordPress and selectively copy our custom content
-# First copy wp-content to preserve any custom themes/plugins
-COPY public_html/wp-content/ /var/www/html/wp-content/
+# Copy custom WordPress content more explicitly
+# First, remove any existing wp-content to start fresh
+RUN rm -rf /var/www/html/wp-content
+
+# Copy the entire wp-content directory
+COPY public_html/wp-content /var/www/html/wp-content
 
 # Copy any custom root files that don't conflict with WordPress core
 COPY public_html/.htaccess /var/www/html/.htaccess
